@@ -67,7 +67,7 @@ Rails.application.configure do
 
   # 2. Configure o host oficial do seu app no Render aqui
   # Exemplo: 'photo-app-massato.onrender.com'
-  config.action_mailer.default_url_options = { host: "seu-app.onrender.com" }
+  config.action_mailer.default_url_options = { host: "photo-app-sl7f.onrender.com", protocol: "https" }
 
   # 3. Configuração oficial do SendGrid
   config.action_mailer.smtp_settings = {
