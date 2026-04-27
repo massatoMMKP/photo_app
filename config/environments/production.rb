@@ -57,17 +57,25 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "example.com" }
+ # 1. Ignorar erros de endereços ruins (mude para true se quiser que o Rails te avise se o SendGrid falhar)
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
 
-  # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
-  # config.action_mailer.smtp_settings = {
-  #   user_name: Rails.application.credentials.dig(:smtp, :user_name),
-  #   password: Rails.application.credentials.dig(:smtp, :password),
-  #   address: "smtp.example.com",
-  #   port: 587,
-  #   authentication: :plain
-  # }
+  # 2. Configure o host oficial do seu app no Render aqui
+  # Exemplo: 'photo-app-massato.onrender.com'
+  config.action_mailer.default_url_options = { host: "seu-app.onrender.com" }
+
+  # 3. Configuração oficial do SendGrid
+  config.action_mailer.smtp_settings = {
+    address:           'smtp.sendgrid.net',
+    port:              587,
+    domain:            'onrender.com',
+    authentication:    :plain,
+    user_name:         'apikey', # É literal, não mude para seu e-mail!
+    password:          ENV['SENDGRID_API_KEY'], # O Rails vai ler da variável de ambiente no Render
+    enable_starttls_auto: true
+  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
