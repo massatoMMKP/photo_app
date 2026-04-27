@@ -15,8 +15,14 @@ test:
 # Configuração para o ambiente de produção (Render + PostgreSQL)
 # O Rails 8 usará estas configurações quando detectar que está no ar.
 production:
-  adapter: postgresql
-  encoding: unicode
-  # O Render preenche a URL do banco automaticamente se você conectar o Database ao Web Service
-  url: <%= ENV['DATABASE_URL'] %>
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  primary: &primary_production
+    adapter: postgresql
+    encoding: unicode
+    url: <%= ENV['DATABASE_URL'] %>
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  cache:
+    <<: *primary_production
+  queue:
+    <<: *primary_production
+  cable:
+    <<: *primary_production
