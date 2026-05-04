@@ -1,0 +1,15 @@
+<% flash.each do |type, message| %>
+  <% 
+    # Mapeia os tipos do Rails para as cores do Bootstrap
+    alert_class = case type.to_s
+                  when 'notice' then 'success'
+                  when 'alert'  then 'danger'
+                  when 'error'  then 'danger'
+                  else 'info'
+                  end
+  %>
+  <div class="alert alert-<%= alert_class %> alert-dismissible fade show m-3" role="alert">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
