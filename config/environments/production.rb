@@ -72,7 +72,7 @@ Rails.application.configure do
   # 3. Configuração oficial do SendGrid
   config.action_mailer.smtp_settings = {
     address:           'smtp.sendgrid.net',
-    port:              587,
+    port:              2525,
     domain:            'onrender.com',
     authentication:    :plain,
     user_name:         'apikey', # É literal, não mude para seu e-mail!
