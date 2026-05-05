@@ -3,5 +3,10 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   before_action :authenticate_user!
 
+  protected
 
+  def after_inactive_sign_up_path_for(resource)
+    session[:unconfirmed_email] = resource.email
+    check_email_path
+  end
 end
