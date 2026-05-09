@@ -2,23 +2,15 @@
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
 
-  def show
-    super do |resource|
-      if resource.errors.empty?
-        sign_in(resource)
-        redirect_to root_path, notice: "Email confirmado com sucesso!" and return
-      end
-    end
+  def check_email
   end
 
   def verify_confirmation
-    # CENÁRIO 1: Confirmou na outra aba — cookie já atualizou
     if user_signed_in?
       redirect_to root_path, notice: "Sua conta já foi confirmada! Bem-vindo(a)."
       return
     end
 
-    # CENÁRIO 2: Confirmou no celular — busca no banco pelo email da sessão
     user = User.find_by(email: session[:unconfirmed_email])
 
     if user&.confirmed?
@@ -26,16 +18,24 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
       session.delete(:unconfirmed_email)
       redirect_to root_path, notice: "Conta confirmada com sucesso! Bem-vindo(a)."
     else
-      # CENÁRIO 3: Ainda não confirmou
-      redirect_to check_email_users_confirmation_path,
+      redirect_to check_email_path,
                   alert: "Você ainda não confirmou o e-mail. Verifique sua caixa de entrada e spam."
+    end
+  end
+
+  # Login automático ao clicar no link do email (celular ou qualquer dispositivo)
+  def show
+    super do |resource|
+      if resource.errors.empty?
+        sign_in(resource)
+        redirect_to root_path, notice: "Email confirmado com sucesso! Bem-vindo(a)." and return
+      end
     end
   end
 
   protected
 
   def after_confirmation_path_for(resource_name, resource)
-    sign_in(resource) # Auto-login after confirmation
     root_path
   end
 

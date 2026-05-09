@@ -4,14 +4,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
  
  protected
   def after_sign_up_path_for(resource)
-    sign_in(resource) 
-    oot_path
+    root_path
   end
 
+  # Chamado quando o usuário precisa confirmar o email — ESSE é o seu fluxo
   def after_inactive_sign_up_path_for(resource)
     session[:unconfirmed_email] = resource.email
     check_email_path
   end
+
 
   
  
