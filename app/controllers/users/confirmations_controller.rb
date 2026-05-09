@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
+  skip_before_action :authenticate_user!, only: %i[check_email verify_confirmation show]
 
   def check_email
+    render "welcome/check_email"
   end
 
   def verify_confirmation

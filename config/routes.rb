@@ -6,13 +6,15 @@ Rails.application.routes.draw do
   }
 
   # Rotas do fluxo de confirmação — agora dentro do namespace correto
-  get "users/confirmation/check_email", 
-      to: "users/confirmations#check_email",
-      as: :check_email
+  devise_scope :user do
+    get "users/confirmation/check_email",
+        to: "users/confirmations#check_email",
+        as: :check_email
 
-  get "users/confirmation/verify", 
-      to: "users/confirmations#verify_confirmation",
-      as: :verify_confirmation
+    get "users/confirmation/verify",
+        to: "users/confirmations#verify_confirmation",
+        as: :verify_confirmation
+  end
 
   root "welcome#index"
 end
