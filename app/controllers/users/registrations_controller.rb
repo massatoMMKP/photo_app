@@ -4,11 +4,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
  
  protected
   def after_sign_up_path_for(resource)
-    singn_in(resource) # Auto-login after sign up
-    check_email_path
+    sign_in(resource) 
+    oot_path
   end
 
   def after_inactive_sign_up_path_for(resource)
+    session[:unconfirmed_email] = resource.email
     check_email_path
   end
 
