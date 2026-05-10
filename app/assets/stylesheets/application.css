@@ -1,10 +1,185 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+/* Estilos customizados para a página inicial */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Estilo para o Jumbotron com imagem de fundo */
+.jumbotron-bg {
+    /* Substitua pela URL da sua imagem usando o helper asset_path do Rails se for uma imagem local */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x1080/222/FFF?text=Sua+Imagem+de+Fundo+Aqui');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 8rem 2rem;
+    margin-bottom: 3rem;
+    border-radius: 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.jumbotron-bg h1 {
+    font-weight: 700;
+    font-size: 3.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.jumbotron-bg p.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Estilos para os Cards de Preço */
+.pricing-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    height: 100%;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.pricing-card .card-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.pricing-card h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.pricing-card .price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #007bff;
+}
+
+.pricing-card .price-span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #777;
+}
+
+.pricing-card .card-body {
+    padding: 2rem;
+}
+
+.pricing-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pricing-card li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f8f9fa;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+
+.pricing-card li:last-child {
+    border-bottom: none;
+}
+
+.pricing-card li i {
+    color: #28a745;
+    margin-right: 10px;
+}
+
+/* Destaque especial para o plano Amaze */
+.card-amaze {
+    border: 2px solid #6f42c1;
+    box-shadow: 0 10px 25px rgba(111, 66, 193, 0.2);
+    position: relative;
+}
+
+.card-amaze .card-header {
+    background: linear-gradient(135deg, #6f42c1, #007bff);
+    color: white;
+    border-bottom: none;
+}
+
+.card-amaze h3 {
+    color: white;
+}
+
+.card-amaze .price {
+    color: #fff;
+}
+
+.card-amaze .price-span {
+    color: #e0e0e0;
+}
+
+/* Badge "Mais Popular" */
+.popular-badge {
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    background-color: #ffc107;
+    color: #333;
+    padding: 5px 40px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transform: rotate(45deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Estilo para os botões */
+.btn-custom {
+    border-radius: 30px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.btn-outline-primary-custom {
+    color: #007bff;
+    border: 2px solid #007bff;
+    background: transparent;
+}
+
+.btn-outline-primary-custom:hover {
+    background: #007bff;
+    color: white;
+}
+
+.btn-amaze {
+    background-color: #6f42c1;
+    color: white;
+    border: none;
+}
+
+.btn-amaze:hover {
+    background-color: #5a32a3;
+    color: white;
+    box-shadow: 0 4px 10px rgba(90, 50, 163, 0.4);
+}
+
+/* Seção de Features adicionais */
+.features-section {
+    padding: 5rem 0;
+    background-color: #fff;
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
