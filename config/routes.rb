@@ -1,5 +1,10 @@
 # config/routes.rb
 Rails.application.routes.draw do
+  get "webhooks/stripe"
+  get "payments/new"
+  get "payments/create"
+  get "payments/success"
+  get "payments/cancel"
   devise_for :users, controllers: {
     confirmations: "users/confirmations",
     registrations: "users/registrations"
@@ -17,4 +22,12 @@ Rails.application.routes.draw do
   end
 
   root "welcome#index"
+  post '/webhooks/stripe', to: 'webhooks#stripe'
+
+  resources :payments, only: [:new, :create] do
+  collection do
+    get :success
+    get :cancel
+  end
+end
 end

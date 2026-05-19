@@ -49,7 +49,7 @@
             <li><i class="fas fa-times text-muted" style="color: #ccc !important;"></i> IA Avançada</li>
           </ul>
           <div class="d-grid mt-auto">
-            <button class="btn btn-outline-primary-custom btn-custom">Assinar Premium</button>
+           <%= button_to "Assinar Premium", payments_path, params: { plan: 'premium' }, method: :post, class: "btn btn-outline-primary-custom btn-custom", data: { turbo: false } %>
           </div>
         </div>
       </div>
@@ -73,7 +73,7 @@
             <li><i class="fas fa-check"></i> <strong>Filtros Mágicos IA</strong></li>
           </ul>
           <div class="d-grid mt-auto">
-            <button class="btn btn-amaze btn-custom">Seja Amaze</button>
+            <%= button_to "Seja Amaze", payments_path, params: { plan: 'amaze' }, method: :post, class: "btn btn-amaze btn-custom", data: { turbo: false } %>
           </div>
         </div>
       </div>
