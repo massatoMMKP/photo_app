@@ -9,4 +9,12 @@ class ApplicationController < ActionController::Base
     check_email_path(token: resource.confirmation_token)
   end
 
+  def after_sign_in_path_for(resource)
+    if resource.subscribed?
+      photos_path
+    else
+      root_path
+    end
+  end
+
 end

@@ -1,5 +1,6 @@
 # config/routes.rb
 Rails.application.routes.draw do
+  resources :photos, only: [:index, :new, :create]
   get "webhooks/stripe"
   get "payments/new"
   get "payments/create"

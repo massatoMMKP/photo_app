@@ -31,8 +31,10 @@ class PaymentsController < ApplicationController
   end
 
   def success
+    redirect_to photos_path, notice: "Assinatura realizada com sucesso!"
   end
 
   def cancel
+    redirect_to root_path, alert: "Assinatura cancelada."
   end
 end
