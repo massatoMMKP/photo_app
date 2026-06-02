@@ -1,1 +1,21 @@
-<h2>Gallery of Photos</h2>
+<div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Galeria</h1>
+    <%= link_to "Enviar Foto", new_photo_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="row">
+    <% @photos.each do |photo| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <%= image_tag photo.image, class: "card-img-top", style: "height: 250px; object-fit: cover;" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= photo.title %></h5>
+            <p class="text-muted">por <%= photo.user.email %></p>
+            <%= link_to "Baixar", rails_blob_path(photo.image, disposition: "attachment"), class: "btn btn-outline-primary btn-sm" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
